@@ -8,7 +8,7 @@ fn main() {
     let args: Vec<String> = args().collect();
     let mut seen: HashSet<i64> = HashSet::from_iter(vec![0]);
     if args.len() != 2 {
-        eprintln!("Usage: advent-of-code-1 <input file>");
+        eprintln!("Usage: puzzle-1 <input file>");
         return;
     }
     let f = File::open(&args[1]).unwrap();

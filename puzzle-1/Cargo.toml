@@ -1,7 +1,7 @@
 [package]
-name = "advent-of-code-1"
+name = "puzzle-1"
 version = "0.1.0"
-authors = ["Guilherme"]
+authors = ["Guilherme Perinazzo"]
 edition = "2018"
 
 [dependencies]
