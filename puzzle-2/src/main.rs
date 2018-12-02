@@ -1,7 +1,7 @@
 use std::collections::HashMap;
-use std::io::{stdin, BufRead, BufReader};
+use std::io::{stdin, BufRead, BufReader, Read};
 
-fn main() {
+fn part_1() {
     let buffer = BufReader::new(stdin());
     let mut two = 0;
     let mut three = 0;
@@ -28,4 +28,23 @@ fn main() {
         }
     }
     println!("{}", two * three);
+}
+
+type Key<'a> = (usize, &'a str, &'a str);
+
+fn main() {
+    let mut buffer = String::new();
+    stdin().read_to_string(&mut buffer).unwrap();
+    let mut id_map: HashMap<Key, u32> = HashMap::new();
+    for line in buffer.lines() {
+        for i in 0..line.len() {
+            let key = (i, &line[..i], &line[(i + 1)..]);
+            id_map.entry(key).and_modify(|v| *v += 1).or_insert(1);
+        }
+    }
+    for (key, occurrences) in id_map.iter() {
+        if *occurrences > 1 {
+            println!("{}: {}{}", occurrences, key.1, key.2);
+        }
+    }
 }
