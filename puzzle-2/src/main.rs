@@ -30,7 +30,7 @@ fn part_1() {
     println!("{}", two * three);
 }
 
-type Key<'a> = (usize, &'a str, &'a str);
+type Key<'a> = (&'a str, &'a str);
 
 fn main() {
     let mut buffer = String::new();
@@ -38,13 +38,13 @@ fn main() {
     let mut id_map: HashMap<Key, u32> = HashMap::new();
     for line in buffer.lines() {
         for i in 0..line.len() {
-            let key = (i, &line[..i], &line[(i + 1)..]);
+            let key = (&line[..i], &line[(i + 1)..]);
             id_map.entry(key).and_modify(|v| *v += 1).or_insert(1);
         }
     }
     for (key, occurrences) in id_map.iter() {
         if *occurrences > 1 {
-            println!("{}: {}{}", occurrences, key.1, key.2);
+            println!("{}: {}{}", occurrences, key.0, key.1);
         }
     }
 }
